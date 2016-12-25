@@ -17,10 +17,12 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+// Typography Styles
 h1,h2,h3 {
   font-family: 'Open Sans', sans-serif;   
 }
 
+// Nav Styles
 .navbar, .home-callout {
   background: #00d2ff; /* fallback for old browsers */
   background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); /* Chrome 10-25, Safari 5.1-6 */
@@ -31,25 +33,16 @@ h1,h2,h3 {
   border: none;
 }
 
-.navbar-default .navbar-brand {
-  color: white;
-}
-
+.navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a {
   color: white;
+  &:hover {
+    color: white;
+    opacity: 0.75;
+  }
 }
 
-.navbar-default .navbar-brand:hover {
-  color: white;
-  opacity: 0.75;
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-  color: white;
-  opacity: 0.75;
-}
-
-
+// Home Page Styles
 .home-callout {
   color: white;
   margin-top: -20px;
