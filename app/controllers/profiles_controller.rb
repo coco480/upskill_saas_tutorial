@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :only_current_user
+  
   # GET to /users/:user_id/profile/new
   def new
     # Render blank profile details form
@@ -10,7 +13,7 @@ class ProfilesController < ApplicationController
     # Ensure that we have the user who is filling out form
     @user = User.find( params[:user_id] )
     # Create profile linked to this specific user
-    @profile = @user.build_profile( profile_params )
+    @profile = @user.build_profile( profile_params ) 
     if @profile.save
       flash[:success] = "Profile updated!"
       redirect_to user_path(id: params[:user_id] )
@@ -44,6 +47,11 @@ class ProfilesController < ApplicationController
   private
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :avatar, :job_title, :phone_number, :contact_email, :description)
+    end
+    
+    def only_current_user
+      @user = User.find( params[:user_id])
+      redirect_to(root_url) unless @user == current_user
     end
 
 end
